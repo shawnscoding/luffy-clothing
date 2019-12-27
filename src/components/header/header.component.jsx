@@ -4,21 +4,25 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
+import CartIcon from "./../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 class Header extends React.Component {
   componentDidMount() {
     console.log("Comdidmount in header.jsx");
     console.log("currentUser", this.props.currentUser);
+    console.log("currentUser", this.props.hidden);
   }
 
   componentDidUpdate() {
-    console.log("Comdidupdate in header.jsx");
+    console.log("ComdidUpdate in header.jsx");
+    console.log(this.props.hidden);
     console.log("currentUser", this.props.currentUser);
   }
 
   render() {
-    const { currentUser } = this.props;
-    console.log("render in header.jsx");
+    const { currentUser, hidden } = this.props;
+    console.log("render in header.jsx", hidden);
     return (
       <div className="header">
         <Link className="logo-container" to="/">
@@ -40,14 +44,17 @@ class Header extends React.Component {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
+        {hidden ? null : <CartDropdown />}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden
 });
 
 export default connect(mapStateToProps)(Header);
