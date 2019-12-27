@@ -7,6 +7,14 @@ class ShopPage extends Component {
     collections: SHOP_DATA
   };
 
+  componentDidMount() {
+    console.log("in ShopPage.jsx ComDidMount");
+  }
+
+  componentDidUpdate() {
+    console.log("in ShopPage.jsx ComDidUpdate");
+  }
+
   render() {
     const { collections } = this.state;
     return (

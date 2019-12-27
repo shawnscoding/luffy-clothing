@@ -14,7 +14,8 @@ class App extends React.Component {
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
-    console.log("Comdidmount in App.jsx");
+    console.log("in App.jsx ComDidMount");
+    console.log("in App.jsx, currentUser: ", this.props.currentUser);
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -28,17 +29,20 @@ class App extends React.Component {
       } else {
         setCurrentUser(userAuth);
       }
-      // console.log(userAuth);
     });
   }
 
+  componentDidUpdate() {
+    console.log("in App.jsx ComDidUpdate");
+    console.log("currentUser", this.props.currentUser);
+  }
+
   componentWillUnmount() {
-    console.log("component will unmount!");
     this.unsubscribeFromAuth();
   }
 
   render() {
-    console.log("render in App.jsx");
+    console.log("in App.jsx, render ");
     return (
       <div>
         <Header />

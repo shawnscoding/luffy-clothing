@@ -9,20 +9,18 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
 class Header extends React.Component {
   componentDidMount() {
-    console.log("Comdidmount in header.jsx");
+    console.log("in header.jsx, ComDidMount");
     console.log("currentUser", this.props.currentUser);
-    console.log("currentUser", this.props.hidden);
   }
 
   componentDidUpdate() {
-    console.log("ComdidUpdate in header.jsx");
-    console.log(this.props.hidden);
-    console.log("currentUser", this.props.currentUser);
+    console.log("in header.jsx ComDidUpdate");
+    console.log("in header.jsx, currentUser", this.props.currentUser);
   }
 
   render() {
     const { currentUser, hidden } = this.props;
-    console.log("render in header.jsx", hidden);
+    console.log("in header.jsx, render");
     return (
       <div className="header">
         <Link className="logo-container" to="/">

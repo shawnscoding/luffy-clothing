@@ -40,6 +40,14 @@ class Directory extends Component {
     ]
   };
 
+  componentDidMount() {
+    console.log("in HomePage.jsx ComDidMount");
+  }
+
+  componentDidUpdate() {
+    console.log("in HomePage.jsx ComDidUpdate");
+  }
+
   render() {
     const { sections } = this.state;
 
