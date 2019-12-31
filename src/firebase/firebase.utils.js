@@ -16,8 +16,7 @@ const config = {
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
-  const userRef = firestore.doc(`/users/${userAuth.uid}`);
-
+  const userRef = firestore.doc(`/users/fsfdsaafs11`);
   const snapShot = await userRef.get();
 
   if (!snapShot.exists) {
@@ -37,7 +36,43 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
   return userRef;
 };
-// it has to be asynchronous thing since we are making api request
+
+// gonna do batch in order to aviod uppredictable code
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+  console.log(collectionRef);
+
+  const batch = firestore.batch();
+
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    console.log(newDocRef);
+    batch.set(newDocRef, obj);
+  });
+  // it doesn't return new array
+  return await batch.commit();
+};
+
+export const convertCollectionsSnapshotToMap = collections => {
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    };
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    console.log("accumulator", accumulator);
+    return accumulator;
+  }, {});
+};
 
 firebase.initializeApp(config);
 

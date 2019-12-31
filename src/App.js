@@ -17,8 +17,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
-    console.log("in App.jsx ComDidMount");
-    console.log("in App.jsx, currentUser: ", this.props.currentUser);
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -29,15 +27,9 @@ class App extends React.Component {
             ...snapShot.data()
           });
         });
-      } else {
-        setCurrentUser(userAuth);
       }
+      setCurrentUser(userAuth);
     });
-  }
-
-  componentDidUpdate() {
-    console.log("in App.jsx ComDidUpdate");
-    console.log("currentUser", this.props.currentUser);
   }
 
   componentWillUnmount() {
@@ -45,7 +37,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("in App.jsx, render ");
     return (
       <div>
         <Header />
