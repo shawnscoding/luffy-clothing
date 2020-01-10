@@ -37,6 +37,10 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const addItemToUserCart = (item, userAuth) => {
+  console.log("S");
+};
+
 // gonna do batch in order to aviod uppredictable code
 export const addCollectionAndDocuments = async (
   collectionKey,
