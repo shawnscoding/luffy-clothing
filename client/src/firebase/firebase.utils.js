@@ -39,6 +39,9 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
 export const addItemToUserCart = (item, userAuth) => {
   console.log("S");
+  console.log("S");
+  console.log("S");
+  console.log("S");
 };
 
 // gonna do batch in order to aviod uppredictable code
