@@ -62,7 +62,7 @@ export function* signOut() {
     yield auth.signOut();
     yield put(signOutSuccess());
   } catch (err) {
-    yield put(signOutFailure());
+    yield put(signOutFailure(err));
   }
 }
 

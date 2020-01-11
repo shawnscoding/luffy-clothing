@@ -13,6 +13,23 @@ const config = {
   measurementId: "G-JSVQ3Y9ZKN"
 };
 
+firebase.initializeApp(config);
+
+export const getUserCartRef = async userId => {
+  const cartsRef = firestore.collection("carts").where("userId", "==", userId);
+  const snapShot = await cartsRef.get();
+  console.log(snapShot);
+
+  if (snapShot.empty) {
+    const cartDocRef = firestore.collection("carts").doc(userId);
+    await cartDocRef.set({ userId, cartItems: [] });
+    return cartDocRef;
+  } else {
+    console.log(snapShot.docs[0].ref);
+    return snapShot.docs[0].ref;
+  }
+};
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
@@ -37,14 +54,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-export const addItemToUserCart = (item, userAuth) => {
-  console.log("S");
-  console.log("S");
-  console.log("S");
-  console.log("S");
-};
-
-// gonna do batch in order to aviod uppredictable code
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
@@ -59,7 +68,6 @@ export const addCollectionAndDocuments = async (
     console.log(newDocRef);
     batch.set(newDocRef, obj);
   });
-  // it doesn't return new array
   return await batch.commit();
 };
 
@@ -79,8 +87,6 @@ export const convertCollectionsSnapshotToMap = collections => {
     return accumulator;
   }, {});
 };
-
-firebase.initializeApp(config);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
