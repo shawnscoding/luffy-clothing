@@ -18,6 +18,7 @@ import { signOutStart } from "../../redux/user/user.actions";
 class Header extends React.Component {
   render() {
     const { currentUser, hidden, signOutStart } = this.props;
+    const test = "test";
     return (
       <HeaderContainer>
         <LogoContainer to="/">
