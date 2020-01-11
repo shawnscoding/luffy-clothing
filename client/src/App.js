@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Header from "./components/header/header.component.jsx";
 import { connect } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user.selector";
@@ -8,6 +8,7 @@ import { checkUserSession } from "./redux/user/user.actions";
 import { GlobalStyle } from "./global.styles";
 import Spinner from "./components/spinner/spinner.component";
 import ErrorBoundary from "./components/error-boundary/error-boundary.component.jsx";
+import NotFound from "./components/not-found/not-found.component.jsx";
 
 const Homepage = lazy(() => import("./pages/homepage/homepage.component"));
 const ShopPage = lazy(() => import("./pages/shop/shop.component"));
@@ -16,7 +17,8 @@ const SignInAndSignUpPage = lazy(() =>
 );
 const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"));
 
-const App = ({ currentUser, checkUserSession }) => {
+const App = props => {
+  const { currentUser, checkUserSession, history } = props;
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
@@ -24,28 +26,42 @@ const App = ({ currentUser, checkUserSession }) => {
     <div>
       <GlobalStyle />
       <Header />
-      <Switch>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={Homepage} />
-            <Route path="/shop" component={ShopPage} />
-            <Route
-              exact
-              path="/checkout"
-              render={() =>
-                currentUser ? <CheckoutPage /> : <Redirect to="/" />
-              }
-            />
-            <Route
-              exact
-              path="/signin"
-              render={() =>
-                currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
-              }
-            />
-          </Suspense>
-        </ErrorBoundary>
-      </Switch>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Route exact path="/" component={Homepage} />
+          <Route
+            path="/(.+)"
+            render={() => (
+              <React.Fragment>
+                <Switch>
+                  <Route path="/shop" component={ShopPage} />
+                  <Route
+                    exact
+                    path="/checkout"
+                    render={() =>
+                      currentUser ? <CheckoutPage /> : <Redirect to="/" />
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/signin"
+                    render={() =>
+                      currentUser ? (
+                        <Redirect
+                          to={history ? history.goBack() : <NotFound />}
+                        />
+                      ) : (
+                        <SignInAndSignUpPage />
+                      )
+                    }
+                  />
+                  <Route component={NotFound} />
+                </Switch>
+              </React.Fragment>
+            )}
+          />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
@@ -58,4 +74,4 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

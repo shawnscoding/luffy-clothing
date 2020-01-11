@@ -43,6 +43,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
   } catch (err) {
+    alert(err.message);
     yield put(signInFailure(err));
   }
 }
@@ -72,6 +73,7 @@ export function* signUp({ payload: { displayName, email, password } }) {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     yield put(signUpSuccess({ user, additionalData: { displayName } }));
   } catch (err) {
+    alert(err.message);
     yield put(signUpFailure(err));
   }
 }

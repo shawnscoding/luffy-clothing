@@ -16,10 +16,13 @@ const SignUp = ({ signUpStart }) => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    await signUpStart({ displayName, email, password });
-    if (password !== confirmPassword) {
-      alert("password don't match");
-      return;
+    try {
+      if (password !== confirmPassword) {
+        throw new Error("test error");
+      }
+      await signUpStart({ displayName, email, password });
+    } catch (error) {
+      alert("Password don't match ");
     }
   };
 
@@ -28,6 +31,7 @@ const SignUp = ({ signUpStart }) => {
 
     setUserCrendentials({ ...userCredentials, [name]: value });
   };
+
   return (
     <div className="sign-up">
       <h2 className="title">I do not have an account </h2>
@@ -71,10 +75,8 @@ const SignUp = ({ signUpStart }) => {
   );
 };
 
-const mapStateToProps = state => ({});
-
 const mapDispatchToProps = dispatch => ({
   signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(null, mapDispatchToProps)(SignUp);
