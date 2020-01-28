@@ -18,14 +18,12 @@ firebase.initializeApp(config);
 export const getUserCartRef = async userId => {
   const cartsRef = firestore.collection("carts").where("userId", "==", userId);
   const snapShot = await cartsRef.get();
-  console.log(snapShot);
 
   if (snapShot.empty) {
     const cartDocRef = firestore.collection("carts").doc(userId);
     await cartDocRef.set({ userId, cartItems: [] });
     return cartDocRef;
   } else {
-    console.log(snapShot.docs[0].ref);
     return snapShot.docs[0].ref;
   }
 };
@@ -59,13 +57,11 @@ export const addCollectionAndDocuments = async (
   objectsToAdd
 ) => {
   const collectionRef = firestore.collection(collectionKey);
-  console.log(collectionRef);
 
   const batch = firestore.batch();
 
   objectsToAdd.forEach(obj => {
     const newDocRef = collectionRef.doc();
-    console.log(newDocRef);
     batch.set(newDocRef, obj);
   });
   return await batch.commit();
