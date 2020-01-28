@@ -22,7 +22,6 @@ const App = props => {
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
-  const test = "test";
   return (
     <div>
       <GlobalStyle />

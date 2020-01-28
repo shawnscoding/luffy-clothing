@@ -1,5 +1,4 @@
 import React from "react";
-import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { connect } from "react-redux";
 import CartIcon from "./../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
@@ -21,7 +20,7 @@ class Header extends React.Component {
     return (
       <HeaderContainer>
         <LogoContainer to="/">
-          <Logo className="logo" />
+          <img style={{ width: "45px" }} alt="Logo" src="/logo.png" />
         </LogoContainer>
         <OptionsContainer>
           <OptionLink to="/shop">SHOP</OptionLink>
