@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 e-commerce website built in React hosting on heroku https://obscure-refuge-92571.herokuapp.com/
 
+### `how to run this app in dev mode`
+
 In the project directory, you can run:
 
 ### `yarn dev`
