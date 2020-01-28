@@ -17,6 +17,8 @@ const SignInAndSignUpPage = lazy(() =>
 );
 const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"));
 
+const test = "";
+
 const App = props => {
   const { currentUser, checkUserSession, history } = props;
   useEffect(() => {
