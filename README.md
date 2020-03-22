@@ -1,6 +1,6 @@
 ## e-commerce website built in React
 
-e-commerce website built in React hosting on heroku https://obscure-refuge-92571.herokuapp.com/
+e-commerce website built in React https://obscure-refuge-92571.herokuapp.com/
 
 ### 앱요약
 
