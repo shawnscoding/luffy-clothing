@@ -4,7 +4,7 @@ e-commerce website built in React https://obscure-refuge-92571.herokuapp.com/
 
 ### 앱요약
 
-온라인 쇼핑몰 사이트입니다. 리액트 앱 개발 연습을 목적으로 개발했으며, Udemy에서 리액트 프로젝트 강의를 참고하며 개발했습니다. 개인 카트 그리고 온라인 결제 시스템을 구축하는 등 최대한 실제 쇼핑몰처럼 구현하려고 최선을 다했습니다. 사용 tool은 React js, Redux, firebase, Semantic UI 등입니다.
+온라인 쇼핑몰 사이트입니다. 리액트 앱 개발 연습을 목적으로 개발했으며, Udemy에서 리액트 프로젝트 강의를 참고하며 개발했습니다. 개인 카트 그리고 온라인 결제 시스템을 구축하는 등 최대한 실제 쇼핑몰처럼 구현하려고 최선을 다했습니다. 또한 앱 전체를 반응형으로 디자인했으며, Progressive 앱을 활성화시켜 모바일 기기에서도 쉽고 빠르게 사이트에 접속할 수 있도록 했습니다. 사용 tool은 React js, Redux, firebase, Semantic UI 등입니다.
 
 ### 앱 사용법
 
