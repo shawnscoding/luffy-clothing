@@ -17,9 +17,7 @@ https://shawnsportfolio.herokuapp.com/
 
 온라인 코스에서 본 프로젝트를 여러 방식으로 변경하며 개발함에따라, saga, react-thunk, sass, styled-component,
 classical, functional component 등, 리액트 개발환경에서 각기 다른 third-party library의 장단점과
-상황에 따른 사용 케이스를 정확히 알게되었습니다.
+상황에 따른 사용 케이스를 정확히 알게되었습니다. 대표적인 예로 요즘 redux-saga 가 redux-thunk 보다 인기가 더 많아진이유, 장점 그리고 차이점 등을 알게되었습니다.
 
 component를 최대한 작게 분리해야 하는 이유 그리고 Redux 이용의 장점을 정확히 이해했습니다.
-component를 작게 분리하는 것이 비슷한 코드를 다시 쓰며 리팩토링을 해야 하는 등, 다소 불편할 수 있지만
-나중에 코드 읽기와 수정이 정말 쉬워지고 component 관리도 훨씬 간단해집니다.
-또한 리덕스 라이브러리는 복잡한 리액트 앱의 스테이트 관리를 정말 쉽게 하며, asynchronous code 작성 그리고 Data fetching을 간단하게 만듭니다. 리덕스를 사용함에 따라 오류 발생률이 현저히 낮아진다는 것을 알게되었습니다.
+component를 작게 분리하는 것은 종종 개발자를 귀찮게 합니다. 비슷한 코드를 다시 쓰며 리팩토링을 해야 하는 등, 다소 불편할 수 있습니다. 하지만 나중에 코드 읽기와 수정이 정말 쉬워지고 component 관리도 훨씬 간단해집니다. 또한 리덕스 라이브러리는 복잡한 리액트 앱의 스테이트 관리를 정말 쉽게 하며, asynchronous code 작성 그리고 Data fetching을 간단하게 만듭니다. 리덕스를 사용함에 따라 오류 발생률이 현저히 낮아진다는 것을 알게되었습니다.
